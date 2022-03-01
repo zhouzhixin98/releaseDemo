@@ -15,6 +15,7 @@
     <description>ReleaseDemo</description>
     <properties>
         <java.version>1.8</java.version>
+        <scm.trunk.url>https://github.com/zhouzhixin98/releaseDemo.git</scm.trunk.url>
     </properties>
     <dependencies>
         <dependency>
@@ -65,9 +66,9 @@
     </dependencies>
 
     <scm>
-        <connection>scm:git:http://github.com/zhouzhixin98/releaseDemo.git</connection>
-        <url>http://github.com/zhouzhixin98/releaseDemo</url>
-        <developerConnection>scm:http://github.com/zhouzhixin98/releaseDemo.git</developerConnection>
+        <connection>scm:git:${scm.trunk.url}</connection>
+        <url>scm:git:${scm.trunk.url}</url>
+        <developerConnection>scm:git:${scm.trunk.url}</developerConnection>
         <!---->
         <tag>HEAD</tag>
     </scm>
@@ -95,6 +96,8 @@
 <!--                    <useReleaseProfile>false</useReleaseProfile>-->
                     <!--使用自定的profile文件-->
 <!--                    <releaseProfiles>release-profile-consumer</releaseProfiles>-->
+                    <!--mvn目标指令-->
+                    <goals>-f pom.xml deploy</goals>
                 </configuration>
             </plugin>
 
