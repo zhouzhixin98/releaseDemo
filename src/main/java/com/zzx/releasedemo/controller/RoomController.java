@@ -1,6 +1,8 @@
 package com.zzx.releasedemo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * description: RoomController
@@ -8,6 +10,12 @@ import org.springframework.stereotype.Controller;
  * author: zzx
  */
 @Controller
+@RequestMapping("/Room")
 public class RoomController {
 
+
+    @GetMapping("/hello")
+    public String test(){
+        return "helloWorld";
+    }
 }
