@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.6.4</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zzx</groupId>
     <artifactId>ReleaseDemo</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>ReleaseDemo</name>
     <description>ReleaseDemo</description>
     <properties>
         <java.version>1.8</java.version>
         <scm.trunk.url>https://github.com/zhouzhixin98/releaseDemo.git</scm.trunk.url>
-        <project.version>1.0.0</project.version>
     </properties>
     <dependencies>
         <dependency>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-release-plugin</artifactId>
-            <version>2.5.3</version>
+            <version>3.0.0-M1</version>
         </dependency>
 
     </dependencies>
@@ -69,6 +69,7 @@
         <connection>scm:git:${scm.trunk.url}</connection>
         <url>scm:git:${scm.trunk.url}</url>
         <developerConnection>scm:git:${scm.trunk.url}</developerConnection>
+        <!---->
         <tag>HEAD</tag>
     </scm>
     <build>
@@ -76,12 +77,27 @@
 
             <!-- release插件设置 -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
                 <configuration>
-                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <!--
+                    可选属性为：
+                    project.groupId 对应于项目的groupId。
+                    project.artifactId 对应于项目的artifactId。
+                    project.version 对应于项目的发行版本。
+                    -->
+                    <tagNameFormat>1.0.0</tagNameFormat>
+                    <!--因为是聚合工程，设置这个参数免去为每个子模块设置版本号的动作，统一使用聚合模块的版本号-->
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <!--git 账号密码-->
+                    <username>343766265@qq.com</username>
+                    <password>zzx19980515</password>
+                    <!--禁用超级pom中的profile文件-->
+                    <useReleaseProfile>true</useReleaseProfile>
+<!--                    <useReleaseProfile>false</useReleaseProfile>-->
+                    <!--使用自定的profile文件-->
+<!--                    <releaseProfiles>release-profile-consumer</releaseProfiles>-->
+                    <!--mvn目标指令-->
+                    <goals>-f pom.xml deploy</goals>
                 </configuration>
             </plugin>
 
@@ -100,20 +116,5 @@
             </plugin>
         </plugins>
     </build>
-    <!--分发配置-->
-    <distributionManagement>
-        <repository>
-            <id>deploymentRepo</id>
-            <name>releases</name>
-            <url>http://somehost/repository/maven-releases/</url>
-            <uniqueVersion>true</uniqueVersion>
-        </repository>
-        <snapshotRepository>
-            <id>deploymentRepo</id>
-            <name>snapshots</name>
-            <url>http://somehost/repository/maven-snapshots/</url>
-            <uniqueVersion>true</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>
