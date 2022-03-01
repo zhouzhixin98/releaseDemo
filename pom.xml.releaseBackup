@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.zzx</groupId>
+    <artifactId>ReleaseDemo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>ReleaseDemo</name>
+    <description>ReleaseDemo</description>
+    <properties>
+        <java.version>1.8</java.version>
+        <scm.trunk.url>https://github.com/zhouzhixin98/releaseDemo.git</scm.trunk.url>
+    </properties>
+    <!--git 远程仓库配置-->
+    <scm>
+        <connection>scm:git:${scm.trunk.url}</connection>
+        <url>${scm.trunk.url}</url>
+        <developerConnection>scm:git:${scm.trunk.url</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 发布插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <!--git用户名-->
+                    <username>343766265@qq.com</username>
+                    <!--git密码-->
+                    <password>zzx19980515</password>
+                    <!--mvn目标指令-->
+                    <goals>-f pom.xml deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
